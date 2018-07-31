@@ -1,0 +1,27 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
+abstract class DummyClass
+{
+    protected function createSlug($model, $name, $count = 0)
+    {
+        $slug = str_slug($name);
+        if ($count > 0) {
+            $slug .= '_' . $count;
+        }
+        $attribute = $model::where('slug', $slug)->first();
+        if (!empty($attribute)) {
+            return $this->createSlug($model, $slug, ++$count);
+        }
+        return $slug;
+    }
+
+    protected function upload($file, $path, $fileName)
+    {
+        Storage::disk('public')->putFileAs('/uploads/'.$path, $file, $fileName);
+    }
+}

@@ -1,0 +1,42 @@
+<?php
+
+namespace DummyNamespace;
+
+use FullModelClass;
+use Illuminate\Http\Request;
+use FullServiceExceptionClass;
+use FullBaseServiceClass;
+
+class DummyClass extends BaseServiceClass
+{
+    public function create(Request $request)
+    {
+        $ModelVariable = $this->processData($request, new ModelClass());
+        return $ModelVariable->save();
+    }
+    
+    public function update(Request $request)
+    {
+        $ModelVariable = ModelClass::find($request->id);
+        if (empty($ModelVariable)) {
+            throw new ServiceExceptionClass("ModelClass doesn't exist !");
+        }
+        $ModelVariable = $this->processData($request, $ModelVariable);
+        return $ModelVariable->save();
+    }
+    
+    public function delete(Request $request)
+    {
+        $ModelVariable = ModelClass::find($request->id);
+        if (empty($ModelVariable)) {
+            throw new ServiceExceptionClass("ModelClass doesn't exist !");
+        }
+        return $ModelVariable->delete();
+    }
+    
+    private function processData(Request $request, ModelClass $ModelVariable)
+    {
+        $ModelVariable->name = $request->name;
+        return $ModelVariable;
+    }
+}

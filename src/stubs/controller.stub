@@ -1,0 +1,59 @@
+<?php
+
+namespace DummyNamespace;
+
+use FullModelClass;
+use Illuminate\Http\Request;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use FullServiceClass;
+use FullServiceExceptionClass;
+
+class DummyClass extends Controller
+{
+    public function index(Request $request)
+    {
+        $ModelVariables = ModelClass::get();
+        return view('ModelVariable.index', compact('ModelVariables'));
+    }
+
+    public function edit(Request $request,$id)
+    {
+        $ModelVariable = ModelClass::find($id);
+        abort_if(empty($ModelVariable), 404);
+        return view('ModelVariable.edit',  compact('ModelVariable'));
+    }
+
+    public function create()
+    {
+        return view('ModelVariable.form');
+    }
+    public function store(Request $request,ServiceClass $ServiceVariable)
+    {
+        try{
+            $ModelVariable = $ServiceVariable->create($request);
+        }catch (ServiceExceptionClass $exception){
+            return response(['custom_error' => $exception->getMessage(),'message'=> $exception->getMessage()], 422);
+        }
+        return response()->json($ModelVariable);
+    }
+
+    public function update(Request $request,ServiceClass $ServiceVariable)
+    {
+        try{
+            $ModelVariable = $ServiceVariable->update($request);
+        }catch (ServiceExceptionClass $exception){
+            return response(['custom_error' => $exception->getMessage(),'message'=> $exception->getMessage()], 422);
+        }
+        return response()->json($ModelVariable);
+    }
+
+    public function delete(Request $request,ServiceClass $ServiceVariable)
+    {
+        try{
+            $ModelVariable = $ServiceVariable->delete($request);
+        }catch (ServiceExceptionClass $exception){
+            return response(['custom_error' => $exception->getMessage(),'message'=> $exception->getMessage()], 422);
+        }
+        return response()->json($ModelVariable);
+    }
+}

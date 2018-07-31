@@ -1,0 +1,11 @@
+<?php
+
+namespace DummyNamespace;
+
+use Throwable;
+
+class ServiceException extends \Exception
+{
+    protected $code=422;
+
+}
