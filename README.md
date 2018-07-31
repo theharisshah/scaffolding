@@ -11,7 +11,7 @@ _____________
 
 **For Service Class**
 
-`php artisan make:serviceController -m "ModelClass" `
+`php artisan make:service -m "ModelClass" `
 
 * Model class will be generated automatically if it don't exist.
 
