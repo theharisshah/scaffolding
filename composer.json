@@ -10,8 +10,8 @@
     ],
     "require": {
         "php": ">=7.1.3",
-        "illuminate/contracts": ">=5.*.*",
-        "illuminate/console": ">=5.*.*",
+        "illuminate/contracts": "8.*.*",
+        "illuminate/console": "8.*.*",
         "ds9labs/scaffolding": "^1.0"
     },
     "autoload": {
