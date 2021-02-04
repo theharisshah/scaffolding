@@ -1,18 +1,17 @@
 {
     "name": "theharisshah/scaffolding",
-    "description": "These are DeepSpace9 scaffolding",
+    "description": ".....",
     "license": "MIT",
     "authors": [
         {
-            "name": "ankit jain",
-            "email": "ankitjain0269@gmail.com"
+            "name": "haris",
+            "email": "theharisshah@gmail.com"
         }
     ],
     "require": {
         "php": ">=7.1.3",
         "illuminate/contracts": "8.*.*",
-        "illuminate/console": "8.*.*",
-        "theharisshah/scaffolding": "^1.0"
+        "illuminate/console": "8.*.*"
     },
     "autoload": {
         "psr-4": {
